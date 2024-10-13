@@ -28,9 +28,8 @@ export default async function CarDetails() {
         {cars.map((car) => (
           <Card key={car._id} className="flex flex-col overflow-hidden">
             <div className="relative">
-              {/* Display the first image from the images array */}
               <img
-                src={car.images[0] || '/placeholder.svg?height=200&width=300'}
+                src={car.images[0] || ''}
                 alt={`${car.carModel}`} // Corrected to use carModel
                 className="w-full h-48 object-cover"
               />
