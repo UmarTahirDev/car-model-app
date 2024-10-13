@@ -2,6 +2,7 @@
 
 import connectToDatabase from "@/lib/db";
 import CarListing from "@/models/CarListing";
+import { revalidatePath } from "next/cache";
 
 export async function addCarListing(formData, info) {
   console.log(info, "info getting from server");
@@ -64,9 +65,10 @@ export async function addCarListing(formData, info) {
 
 export async function getCarListing() {
   try {
-    // Connect to the database
+    
     await connectToDatabase();
     const cars = await CarListing.find();
+    revalidatePath('/')
     return { success: true, cars };
   } catch (error) {
     console.error("Error adding car listing:", error);
